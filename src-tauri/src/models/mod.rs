@@ -1,0 +1,2 @@
+// モデルモジュール
+pub mod profile;
