@@ -1,0 +1,46 @@
+import "./Sidebar.css";
+
+interface SidebarProps {
+  currentPage: string;
+  onNavigate: (page: string) => void;
+}
+
+interface MenuItem {
+  id: string;
+  label: string;
+  icon: string;
+  enabled: boolean;
+}
+
+const menuItems: MenuItem[] = [
+  { id: "dashboard", label: "ダッシュボード", icon: "📊", enabled: false },
+  { id: "compute", label: "コンピュート", icon: "🖥️", enabled: false },
+  { id: "storage", label: "オブジェクトストレージ", icon: "📦", enabled: false },
+  { id: "network", label: "ネットワーク", icon: "🌐", enabled: false },
+  { id: "database", label: "データベース", icon: "🗄️", enabled: false },
+  { id: "iam", label: "IAM", icon: "🔑", enabled: false },
+  { id: "settings", label: "設定", icon: "⚙️", enabled: true },
+];
+
+export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
+  return (
+    <nav className="sidebar">
+      <div className="sidebar-header">
+        <h1 className="sidebar-title">OCI Desktop</h1>
+      </div>
+      <ul className="sidebar-menu">
+        {menuItems.map((item) => (
+          <li
+            key={item.id}
+            className={`sidebar-item ${currentPage === item.id ? "active" : ""} ${!item.enabled ? "disabled" : ""}`}
+            onClick={() => item.enabled && onNavigate(item.id)}
+          >
+            <span className="sidebar-icon">{item.icon}</span>
+            <span className="sidebar-label">{item.label}</span>
+            {!item.enabled && <span className="sidebar-badge">準備中</span>}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}

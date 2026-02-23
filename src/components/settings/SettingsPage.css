@@ -1,0 +1,8 @@
+.settings-page {
+  display: flex;
+  height: 100%;
+  background-color: #0f0f23;
+  border-radius: 8px;
+  border: 1px solid #2a2a4a;
+  overflow: hidden;
+}

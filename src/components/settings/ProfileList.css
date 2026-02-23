@@ -1,0 +1,80 @@
+.profile-list {
+  width: 240px;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2a2a4a;
+  background-color: #12122a;
+}
+
+.profile-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.profile-list-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.profile-add-btn {
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.profile-add-btn:hover {
+  background-color: #5a52e0;
+}
+
+.profile-list-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.profile-list-empty {
+  padding: 20px 12px;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.profile-card {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-left: 3px solid transparent;
+}
+
+.profile-card:hover {
+  background-color: #1a1a3a;
+}
+
+.profile-card.selected {
+  background-color: #1a1a3a;
+  border-left-color: #6c63ff;
+}
+
+.profile-card-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin-bottom: 2px;
+}
+
+.profile-card-region {
+  font-size: 12px;
+  color: #888;
+}
