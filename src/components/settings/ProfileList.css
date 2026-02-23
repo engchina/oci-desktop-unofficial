@@ -1,80 +1,116 @@
 .profile-list {
-  width: 240px;
-  min-width: 240px;
+  width: 280px;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #2a2a4a;
-  background-color: #12122a;
+  border-right: 1px solid var(--border-color);
+  background-color: rgba(10, 13, 20, 0.4);
 }
 
 .profile-list-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 12px;
-  border-bottom: 1px solid #2a2a4a;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .profile-list-title {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  color: #e0e0e0;
+  color: var(--text-primary);
 }
 
 .profile-add-btn {
-  background-color: #6c63ff;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-light));
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 12px;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 12px rgba(245, 54, 92, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .profile-add-btn:hover {
-  background-color: #5a52e0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 54, 92, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.profile-add-btn:active {
+  transform: translateY(1px);
 }
 
 .profile-list-items {
   flex: 1;
   overflow-y: auto;
-  padding: 8px 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .profile-list-empty {
-  padding: 20px 12px;
+  padding: 30px 20px;
   text-align: center;
-  color: #666;
-  font-size: 13px;
+  color: var(--text-muted);
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .profile-card {
-  padding: 10px 12px;
+  padding: 14px 18px;
   cursor: pointer;
-  transition: background-color 0.15s ease;
-  border-left: 3px solid transparent;
+  transition: all var(--transition-fast);
+  border-radius: 10px;
+  background-color: var(--bg-surface-solid);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .profile-card:hover {
-  background-color: #1a1a3a;
+  background-color: var(--bg-surface-hover);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 .profile-card.selected {
-  background-color: #1a1a3a;
-  border-left-color: #6c63ff;
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0.02) 100%);
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.profile-card.selected::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  background-color: var(--brand-secondary);
+  border-radius: 0 4px 4px 0;
+  box-shadow: var(--shadow-glow);
 }
 
 .profile-card-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #e0e0e0;
-  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
 }
 
 .profile-card-region {
-  font-size: 12px;
-  color: #888;
+  font-size: 13px;
+  color: var(--text-muted);
 }

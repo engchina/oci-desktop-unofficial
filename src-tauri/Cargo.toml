@@ -22,6 +22,15 @@ serde_json = "1"
 tokio = { version = "1", features = ["full"] }
 reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
 rsa = { version = "0.9", features = ["sha2"] }
+chrono = "0.4"
+sha2 = "0.10"
+regex-lite = "0.1"
+dirs = "6"
+base64 = "0.22"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "libloaderapi"] }
+rsa = { version = "0.9", features = ["sha2"] }
 sha2 = "0.10"
 base64 = "0.22"
 chrono = "0.4"

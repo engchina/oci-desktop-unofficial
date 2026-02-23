@@ -35,6 +35,12 @@
       "nsis": {
         "displayLanguageSelector": true,
         "languages": ["Japanese", "English"]
+      },
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      },
+      "wix": {
+        "language": "ja-JP"
       }
     }
   }
