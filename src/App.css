@@ -1,40 +1,46 @@
-/* グローバルスタイルリセット & デザインシステム変数 */
+/* Global Style Reset & Enterprise Design System Tokens */
 :root {
-  /* Color Palette - Ultra-Premium Dark & Oracle Accents */
-  --bg-base: #06080D;
-  /* Deeper void background */
-  --bg-surface: rgba(15, 20, 28, 0.7);
+  /* Color Palette - Clean, Professional Dark Theme */
+  --bg-base: #0B0F19;
+  /* Slightly lighter, more neutral space */
+  --bg-surface: rgba(17, 24, 39, 0.7);
   /* Translucent surface */
-  --bg-surface-solid: #0F141C;
-  --bg-surface-hover: rgba(25, 33, 45, 0.85);
+  --bg-surface-solid: #111827;
+  /* Solid structural background */
+  --bg-surface-hover: rgba(31, 41, 55, 0.85);
+  /* Slate gray hover */
 
-  --brand-primary: #F5365C;
-  /* Vibrant Oracle Red */
-  --brand-primary-light: #FB6340;
-  --brand-secondary: #00E5FF;
-  /* Bright AI Teal Accent */
+  /* Enterprise Blues & Slate */
+  --brand-primary: #2563EB;
+  /* Clean Enterprise Blue */
+  --brand-primary-light: #3B82F6;
+  --brand-secondary: #60A5FA;
+  /* Soft Blue/Slate Accent */
+  --brand-secondary-dim: rgba(96, 165, 250, 0.15);
 
-  /* Text Colors */
-  --text-primary: #FFFFFF;
-  --text-secondary: #A0AEC0;
-  --text-muted: #718096;
+  /* Typography Colors */
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
 
   /* Borders & Dividers */
-  --border-color: rgba(255, 255, 255, 0.06);
-  --border-color-focus: rgba(0, 229, 255, 0.6);
-  /* AI Glow */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color-light: rgba(255, 255, 255, 0.15);
+  --border-focus: var(--brand-primary);
 
-  /* Transitions */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Elevation Shadows - Clean, neutral depth */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
-  /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 15px rgba(0, 229, 255, 0.25);
-  --shadow-glow-red: 0 0 18px rgba(245, 54, 92, 0.25);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  /* Focus Effects */
+  --shadow-glow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+  /* Motion & Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 *,
@@ -55,16 +61,18 @@ body,
 
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
   background-color: var(--bg-base);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Ambient AI Background Mesh / Gradient */
+  /* Extremely subtle, professional background mesh */
   background-image:
-    radial-gradient(circle at 10% 40%, rgba(245, 54, 92, 0.06), transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(0, 229, 255, 0.05), transparent 40%),
-    radial-gradient(circle at 50% 90%, rgba(251, 99, 64, 0.03), transparent 50%);
+    radial-gradient(circle at 10% 30%, rgba(37, 99, 235, 0.03), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(96, 165, 250, 0.02), transparent 50%),
+    radial-gradient(circle at 60% 80%, rgba(37, 99, 235, 0.015), transparent 40%);
   background-attachment: fixed;
 }
 
@@ -100,11 +108,11 @@ body {
 }
 
 .placeholder-page h2 {
-  font-size: 24px;
+  font-size: 26px;
   margin-bottom: 12px;
-  color: var(--text-primary);
+  letter-spacing: -0.02em;
   font-weight: 600;
-  background: linear-gradient(90deg, #fff, var(--text-secondary));
+  background: linear-gradient(180deg, #FFFFFF 0%, #A0AABF 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -112,6 +120,7 @@ body {
 
 .placeholder-page p {
   font-size: 15px;
+  color: var(--text-secondary);
 }
 
 /* Utility Animations */
