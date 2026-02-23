@@ -82,3 +82,64 @@
   background-color: var(--bg-surface-solid);
   color: var(--text-primary);
 }
+
+/* Zoom Controls */
+.topbar-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 4px;
+  margin-right: 12px;
+}
+
+.zoom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  color: var(--text-primary);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.zoom-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.zoom-btn:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.zoom-percentage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.zoom-percentage:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.zoom-percentage:active {
+  background-color: rgba(255, 255, 255, 0.12);
+}

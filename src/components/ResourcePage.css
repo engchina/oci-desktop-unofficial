@@ -1,0 +1,408 @@
+/* 共通リソースページスタイル */
+.resource-page {
+    padding: 28px 32px;
+    animation: fadeIn var(--transition-normal);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.resource-page-header h2 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.resource-page-header .header-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.resource-page-header .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* コンパートメント入力 */
+.compartment-bar {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.compartment-bar .field-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.compartment-bar .field-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.compartment-bar .field-input {
+    padding: 8px 12px;
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 13px;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.compartment-bar .field-input:focus {
+    border-color: var(--brand-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.compartment-bar .btn-fetch {
+    padding: 8px 18px;
+    background: var(--brand-primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.compartment-bar .btn-fetch:hover {
+    background: var(--brand-primary-light);
+}
+
+.compartment-bar .btn-fetch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* テーブル */
+.resource-table-wrapper {
+    flex: 1;
+    overflow: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-surface);
+}
+
+.resource-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.resource-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.resource-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    background: var(--bg-surface-solid);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.resource-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resource-table tbody tr {
+    transition: background var(--transition-fast);
+}
+
+.resource-table tbody tr:hover {
+    background: var(--bg-surface-hover);
+}
+
+.resource-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 状態バッジ */
+.state-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.state-badge.running,
+.state-badge.active,
+.state-badge.available {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+
+.state-badge.stopped,
+.state-badge.inactive,
+.state-badge.terminated {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.state-badge.provisioning,
+.state-badge.starting,
+.state-badge.stopping,
+.state-badge.updating,
+.state-badge.creating {
+    background: rgba(234, 179, 8, 0.15);
+    color: #eab308;
+}
+
+.state-badge.default {
+    background: rgba(156, 163, 175, 0.15);
+    color: #9ca3af;
+}
+
+/* 空／ローディング／エラー状態 */
+.resource-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.resource-empty .empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.resource-empty h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.resource-empty p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.resource-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    gap: 10px;
+    font-size: 14px;
+}
+
+.resource-loading .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color-light);
+    border-top-color: var(--brand-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.resource-error {
+    padding: 16px 20px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #fca5a5;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+/* プロファイル未設定 */
+.no-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    text-align: center;
+    animation: fadeIn var(--transition-normal);
+}
+
+.no-profile .no-profile-icon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    opacity: 0.4;
+}
+
+.no-profile h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.no-profile p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ダッシュボードカード */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.dashboard-card {
+    padding: 22px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    border-color: var(--border-color-light);
+    background: var(--bg-surface-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.dashboard-card-icon {
+    font-size: 28px;
+}
+
+.dashboard-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.dashboard-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* プロファイル情報カード */
+.profile-info-card {
+    padding: 20px 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.profile-info-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.profile-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.profile-info-item .info-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.profile-info-item .info-value {
+    font-size: 13px;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* IAM タブ */
+.iam-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    background: var(--bg-surface-solid);
+    border-radius: 8px;
+    padding: 3px;
+    width: fit-content;
+}
+
+.iam-tab {
+    padding: 7px 18px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.iam-tab:hover {
+    color: var(--text-primary);
+}
+
+.iam-tab.active {
+    background: var(--brand-primary);
+    color: #fff;
+}

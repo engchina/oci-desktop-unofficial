@@ -13,12 +13,12 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { id: "dashboard", label: "ダッシュボード", icon: "📊", enabled: false },
-  { id: "compute", label: "コンピュート", icon: "🖥️", enabled: false },
-  { id: "storage", label: "オブジェクトストレージ", icon: "📦", enabled: false },
-  { id: "network", label: "ネットワーク", icon: "🌐", enabled: false },
-  { id: "database", label: "データベース", icon: "🗄️", enabled: false },
-  { id: "iam", label: "IAM", icon: "🔑", enabled: false },
+  { id: "dashboard", label: "ダッシュボード", icon: "📊", enabled: true },
+  { id: "compute", label: "コンピュート", icon: "🖥️", enabled: true },
+  { id: "storage", label: "オブジェクトストレージ", icon: "📦", enabled: true },
+  { id: "network", label: "ネットワーク", icon: "🌐", enabled: true },
+  { id: "database", label: "データベース", icon: "🗄️", enabled: true },
+  { id: "iam", label: "IAM", icon: "🔑", enabled: true },
   { id: "settings", label: "設定", icon: "⚙️", enabled: true },
 ];
 

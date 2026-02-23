@@ -1,23 +1,37 @@
 import { useState } from "react";
 import { ProfileProvider } from "./context/ProfileContext";
+import { ZoomProvider } from "./context/ZoomContext";
 import AppShell from "./components/layout/AppShell";
 import SettingsPage from "./components/settings/SettingsPage";
+import DashboardPage from "./components/dashboard/DashboardPage";
+import ComputePage from "./components/compute/ComputePage";
+import StoragePage from "./components/storage/StoragePage";
+import NetworkPage from "./components/network/NetworkPage";
+import DatabasePage from "./components/database/DatabasePage";
+import IamPage from "./components/iam/IamPage";
 import "./App.css";
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState("settings");
+  const [currentPage, setCurrentPage] = useState("dashboard");
 
   const renderPage = () => {
     switch (currentPage) {
+      case "dashboard":
+        return <DashboardPage onNavigate={setCurrentPage} />;
+      case "compute":
+        return <ComputePage />;
+      case "storage":
+        return <StoragePage />;
+      case "network":
+        return <NetworkPage />;
+      case "database":
+        return <DatabasePage />;
+      case "iam":
+        return <IamPage />;
       case "settings":
         return <SettingsPage />;
       default:
-        return (
-          <div className="placeholder-page">
-            <h2>準備中</h2>
-            <p>この機能は今後のアップデートで追加されます。</p>
-          </div>
-        );
+        return <DashboardPage onNavigate={setCurrentPage} />;
     }
   };
 
@@ -30,8 +44,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ProfileProvider>
-      <AppContent />
-    </ProfileProvider>
+    <ZoomProvider>
+      <ProfileProvider>
+        <AppContent />
+      </ProfileProvider>
+    </ZoomProvider>
   );
 }
