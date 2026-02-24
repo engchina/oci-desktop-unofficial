@@ -22,10 +22,28 @@ fn expand_tilde(path: &str) -> String {
     path.to_string()
 }
 
+/// パスを絶対パスに変換（相対パスは設定ファイルディレクトリ基準）
+fn resolve_key_file_path(key_file: &str, config_dir: &Path) -> String {
+    // チルダ展開
+    let expanded = expand_tilde(key_file);
+    let path = Path::new(&expanded);
+    
+    // 既に絶対パスの場合はそのまま返す
+    if path.is_absolute() {
+        return expanded;
+    }
+    
+    // 相対パスの場合は設定ファイルディレクトリからの絶対パスに変換
+    config_dir.join(path).to_string_lossy().to_string()
+}
+
 /// OCI 設定ファイル（INI 形式）を解析してプロファイル一覧を返す
 pub fn parse_config(path: &Path) -> Result<Vec<OciProfile>, String> {
     let content = fs::read_to_string(path)
         .map_err(|e| format!("設定ファイルの読み込みに失敗しました: {}", e))?;
+
+    // 設定ファイルのディレクトリを取得（相対パス解決用）
+    let config_dir = path.parent().unwrap_or(Path::new("/"));
 
     let mut profiles: Vec<OciProfile> = Vec::new();
     let mut current_section: Option<String> = None;
@@ -43,7 +61,7 @@ pub fn parse_config(path: &Path) -> Result<Vec<OciProfile>, String> {
         if trimmed.starts_with('[') && trimmed.ends_with(']') {
             // 前のセクションを保存
             if let Some(section_name) = current_section.take() {
-                if let Some(profile) = build_profile(&section_name, &current_fields) {
+                if let Some(profile) = build_profile(&section_name, &current_fields, config_dir) {
                     profiles.push(profile);
                 }
             }
@@ -62,7 +80,7 @@ pub fn parse_config(path: &Path) -> Result<Vec<OciProfile>, String> {
 
     // 最後のセクションを保存
     if let Some(section_name) = current_section {
-        if let Some(profile) = build_profile(&section_name, &current_fields) {
+        if let Some(profile) = build_profile(&section_name, &current_fields, config_dir) {
             profiles.push(profile);
         }
     }
@@ -71,14 +89,14 @@ pub fn parse_config(path: &Path) -> Result<Vec<OciProfile>, String> {
 }
 
 /// フィールドマップからプロファイルを構築
-fn build_profile(name: &str, fields: &HashMap<String, String>) -> Option<OciProfile> {
+fn build_profile(name: &str, fields: &HashMap<String, String>, config_dir: &Path) -> Option<OciProfile> {
     Some(OciProfile {
         name: name.to_string(),
         user: fields.get("user")?.clone(),
         tenancy: fields.get("tenancy")?.clone(),
         region: fields.get("region")?.clone(),
         fingerprint: fields.get("fingerprint")?.clone(),
-        key_file: expand_tilde(fields.get("key_file")?),
+        key_file: resolve_key_file_path(fields.get("key_file")?, config_dir),
     })
 }
 

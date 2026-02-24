@@ -12,13 +12,34 @@ use commands::profile::{
     create_profile, delete_profile, get_profile, get_regions, list_profiles, update_profile,
 };
 use commands::storage::{get_namespace, list_buckets};
+use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    #[cfg(all(target_os = "linux", debug_assertions))]
+    {
+        let display = std::env::var("DISPLAY").unwrap_or_else(|_| "<unset>".to_string());
+        let wayland_display =
+            std::env::var("WAYLAND_DISPLAY").unwrap_or_else(|_| "<unset>".to_string());
+        let xdg_runtime_dir =
+            std::env::var("XDG_RUNTIME_DIR").unwrap_or_else(|_| "<unset>".to_string());
+        eprintln!(
+            "[oci-desktop] DISPLAY={display}, WAYLAND_DISPLAY={wayland_display}, XDG_RUNTIME_DIR={xdg_runtime_dir}"
+        );
+    }
+
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_opener::init())
+        .setup(|app| {
+            if let Some(window) = app.get_webview_window("main") {
+                let _ = window.show();
+                let _ = window.unminimize();
+                let _ = window.set_focus();
+            }
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             // 設定コマンド
             get_default_config_path,
